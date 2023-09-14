@@ -20,31 +20,26 @@ public class Allrecord extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void updateRecord() throws ClassNotFoundException, SQLException {
+    public void updateMark() throws ClassNotFoundException, SQLException {
 
-        int i= Integer.parseInt(roll.getText());
-        if (physics.getText().isEmpty() || chemistry.getText().isEmpty() || math.getText().isEmpty() || hindi.getText().isEmpty() || english.getText().isEmpty()||roll.getText().isEmpty()) {
+        if (physics.getText().isEmpty() || chemistry.getText().isEmpty() || math.getText().isEmpty() || hindi.getText().isEmpty() || english.getText().isEmpty() || roll.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Empty is not allow");
-        }
-        else if(Integer.parseInt(roll.getText())<0)
-        {
+        } else if (Integer.parseInt(roll.getText()) < 0) {
             JOptionPane.showMessageDialog(null, "Invalid roll number");
         }
-        
-         int physics_t = Integer.parseInt(physics.getText());
-            int chemistry_t = Integer.parseInt(chemistry.getText());
-            int math_t = Integer.parseInt(math.getText());
-            int hindi_t = Integer.parseInt(hindi.getText());
-            int english_t = Integer.parseInt(english.getText());
-            int total = physics_t + chemistry_t + math_t + hindi_t + english_t;
-            int roll_t = Integer.parseInt(roll.getText());
-        if(physics_t<0||physics_t>100 || chemistry_t>100||chemistry_t<0||math_t>100||math_t<0||hindi_t>100||hindi_t<0||english_t>100||english_t<0){
-        
-             JOptionPane.showMessageDialog(null, "Invalid Mark");
-        }
-        else{
 
-           
+        int physics_t = Integer.parseInt(physics.getText());
+        int chemistry_t = Integer.parseInt(chemistry.getText());
+        int math_t = Integer.parseInt(math.getText());
+        int hindi_t = Integer.parseInt(hindi.getText());
+        int english_t = Integer.parseInt(english.getText());
+        int total = physics_t + chemistry_t + math_t + hindi_t + english_t;
+        int roll_t = Integer.parseInt(roll.getText());
+        if (physics_t < 0 || physics_t > 100 || chemistry_t > 100 || chemistry_t < 0 || math_t > 100 || math_t < 0 || hindi_t > 100 || hindi_t < 0 || english_t > 100 || english_t < 0) {
+
+            JOptionPane.showMessageDialog(null, "Invalid Mark");
+        } else {
+
             System.out.println("found it");
             Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -70,8 +65,10 @@ public class Allrecord extends javax.swing.JFrame {
             if (a > 0) {
                 System.out.println("savedata");
                 System.out.println("Succesfull");
+                JOptionPane.showMessageDialog(null, "Data update Succssefully");
+
             } else {
-                 JOptionPane.showMessageDialog(null, "invalid roll number");
+                JOptionPane.showMessageDialog(null, "invalid roll number");
                 System.out.println("faild");
             }
 
@@ -113,6 +110,8 @@ public class Allrecord extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
+        add = new javax.swing.JLabel();
+        add1 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -224,22 +223,57 @@ public class Allrecord extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel3.setText("Enter Physics no        :");
 
+        physics.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                physicsKeyTyped(evt);
+            }
+        });
+
+        chemistry.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                chemistryKeyTyped(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel4.setText("Enter Chemistry no   :");
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel5.setText("Enter Math no            :");
 
+        math.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                mathKeyTyped(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel6.setText("Enter Hindi no            :");
 
+        hindi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                hindiKeyTyped(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel7.setText("Enter English no         :");
+
+        english.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                englishKeyTyped(evt);
+            }
+        });
 
         clear.setBackground(new java.awt.Color(0, 102, 204));
         clear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         clear.setForeground(new java.awt.Color(255, 255, 255));
         clear.setText("Clear");
+        clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearActionPerformed(evt);
+            }
+        });
 
         submit.setBackground(new java.awt.Color(0, 102, 204));
         submit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -384,6 +418,12 @@ public class Allrecord extends javax.swing.JFrame {
             .addGap(0, 4, Short.MAX_VALUE)
         );
 
+        add.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        add.setText("Enter Physics no        :");
+
+        add1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        add1.setText("Enter Physics no        :");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -396,6 +436,12 @@ public class Allrecord extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(add1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,6 +453,10 @@ public class Allrecord extends javax.swing.JFrame {
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(add1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -636,8 +686,7 @@ public class Allrecord extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(165, 165, 165)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -695,7 +744,7 @@ public class Allrecord extends javax.swing.JFrame {
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
 
         try {
-            updateRecord();
+            updateMark();
         } catch (ClassNotFoundException ex) {
 
         } catch (SQLException ex) {
@@ -705,12 +754,63 @@ public class Allrecord extends javax.swing.JFrame {
     }//GEN-LAST:event_submitActionPerformed
 
     private void rollKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rollKeyTyped
-        char c = evt.getKeyChar();      
+        char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume(); // Consume non-digit characters
-          
-        } 
+
+        }
     }//GEN-LAST:event_rollKeyTyped
+
+    private void physicsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_physicsKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Consume non-digit characters
+
+        }
+    }//GEN-LAST:event_physicsKeyTyped
+
+    private void chemistryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chemistryKeyTyped
+
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Consume non-digit characters
+
+        }
+    }//GEN-LAST:event_chemistryKeyTyped
+
+    private void mathKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mathKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Consume non-digit characters
+
+        }
+    }//GEN-LAST:event_mathKeyTyped
+
+    private void hindiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hindiKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Consume non-digit characters
+
+        }
+    }//GEN-LAST:event_hindiKeyTyped
+
+    private void englishKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_englishKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume(); // Consume non-digit characters
+
+        }
+    }//GEN-LAST:event_englishKeyTyped
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+
+        roll.setText("");
+        physics.setText("");
+        chemistry.setText("");
+        math.setText("");
+        hindi.setText("");
+        english.setText("");
+    }//GEN-LAST:event_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -748,6 +848,8 @@ public class Allrecord extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel add;
+    private javax.swing.JLabel add1;
     private javax.swing.JTextField chemistry;
     private javax.swing.JButton clear;
     private javax.swing.JTextField english;
